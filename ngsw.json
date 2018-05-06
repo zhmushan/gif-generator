@@ -1,0 +1,83 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.1982407450e95a849ee8.js",
+        "/polyfills.2903ad11212d7d797800.js",
+        "/runtime.6afe30102d8fe7337431.js",
+        "/scripts.67fde7f0f3245249eb5d.js",
+        "/styles.a8537cdcc05a3f4e5893.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/gif/为所欲为.gif",
+        "/assets/gif/王境泽.gif",
+        "/assets/gif/窃格瓦拉.gif",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/js/gif.worker.js",
+        "/assets/templates.json"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/gif/为所欲为.gif": "0ce415c21ec0ef157effa693f239c19085f70596",
+    "/assets/gif/王境泽.gif": "78db9d85a4cf38b82a4418831ebaa1aa7e4d018b",
+    "/assets/gif/窃格瓦拉.gif": "6163ba02d93dd44c52597f545aeab41c27cf853a",
+    "/assets/icons/icon-128x128.png": "83d0e78cda9e4a5093158edc9bb5c56464d5cb70",
+    "/assets/icons/icon-144x144.png": "5962c2da6fe586c2cb2499eb02ea3a4682aae04d",
+    "/assets/icons/icon-152x152.png": "5d462e745bd6110c7af09bae410223b8b15a9a3f",
+    "/assets/icons/icon-192x192.png": "e2e49fcb782d75348f41eb8646269231901ced58",
+    "/assets/icons/icon-384x384.png": "ad7acc96afeaba750aa574f8a272236da9834a0b",
+    "/assets/icons/icon-512x512.png": "65ae1af34e392ef7e60a38c1343640fbadb4f336",
+    "/assets/icons/icon-72x72.png": "cc079fcfb7857fd9801eeb22197e95d3fd59ea33",
+    "/assets/icons/icon-96x96.png": "89f178ef4f7d0ac8398dbaca481118c41559c66b",
+    "/assets/js/gif.worker.js": "839d949df9336447c56a5c6d07979ba8adca5dd9",
+    "/assets/templates.json": "a785069d12f0e3e959cce082a88c85a2881fc327",
+    "/favicon.ico": "ac022f916ff04dd242fb87a02aef671fe04a366a",
+    "/index.html": "be05cf9483f48fcb628837d2afd87cb639bb1f4d",
+    "/main.1982407450e95a849ee8.js": "12893129712e1670e4292014a574859c88bd3a0c",
+    "/polyfills.2903ad11212d7d797800.js": "193f6d7b77c2bce633da2f543082303b4f32d7ed",
+    "/runtime.6afe30102d8fe7337431.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
+    "/scripts.67fde7f0f3245249eb5d.js": "e2713871ce0ddbfec4c667d9f68e6dec696cbb97",
+    "/styles.a8537cdcc05a3f4e5893.css": "0650c0fdb6867a2f02b01fa5fdf13af3a31e798f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*\\.[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*\\/.*$"
+    }
+  ]
+}
