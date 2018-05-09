@@ -1,7 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatMenuModule, MatButtonModule, MatIconModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatMenuModule,
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatToolbarModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -31,6 +38,7 @@ import { AppRoutingModule } from './app.routing';
     MatInputModule,
     MatIconModule,
     MatMenuModule,
+    MatToolbarModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

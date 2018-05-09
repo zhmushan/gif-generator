@@ -65,6 +65,7 @@ export class MainComponent implements OnInit {
     this.route.params.forEach(param => {
       this.init(param.name);
       if (this.templateContent.length > 0) {
+        this.arraybuffer = new ArrayBuffer(0);
         this.gifService.fetch(this.name).subscribe(arraybuffer => {
           this.arraybuffer = arraybuffer;
           this.build();
