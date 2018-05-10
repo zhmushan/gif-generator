@@ -42,7 +42,7 @@ export const gifEncoder = (gifReader: GifReader, context: CanvasRenderingContext
   const gif = new GIF({
     width: width,
     height: height,
-    workerScript: '/assets/js/gif.worker.js',
+    workerScript: './assets/js/gif.worker.js',
   });
   const pixelBuffer = new Uint8ClampedArray(width * height * 4);
 
