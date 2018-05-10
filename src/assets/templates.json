@@ -1,0 +1,109 @@
+[{
+    "name": "窃格瓦拉",
+    "template": [{
+        "text": "没有钱啊，肯定要做的啊",
+        "startTime": 0,
+        "endTime": 1.8
+      },
+      {
+        "text": "不做的话没有钱用",
+        "startTime": 1.88,
+        "endTime": 3.76
+      },
+      {
+        "text": "那你不会去打工啊",
+        "startTime": 3.81,
+        "endTime": 4.66
+      },
+      {
+        "text": "有手有脚的",
+        "startTime": 4.66,
+        "endTime": 5.90
+      },
+      {
+        "text": "打工是不可能打工的",
+        "startTime": 6.02,
+        "endTime": 8.42
+      },
+      {
+        "text": "这辈子都不可能打工的",
+        "startTime": 8.42,
+        "endTime": 10.75
+      }
+    ]
+
+  },
+  {
+    "name": "为所欲为",
+    "template": [{
+        "text": "好啊",
+        "startTime": 1.18,
+        "endTime": 1.56
+      },
+      {
+        "text": "我是一等良民就不说",
+        "startTime": 3.18,
+        "endTime": 4.43
+      },
+      {
+        "text": "即使一定要冤枉我",
+        "startTime": 5.31,
+        "endTime": 7.43
+      },
+      {
+        "text": "我也有钱聘请大律师帮我",
+        "startTime": 7.56,
+        "endTime": 9.93
+      },
+      {
+        "text": "我想我别指望坐牢了",
+        "startTime": 10.06,
+        "endTime": 11.56
+      },
+      {
+        "text": "你别以为有钱就能为所欲为",
+        "startTime": 11.93,
+        "endTime": 13.06
+      },
+      {
+        "text": "抱歉，有钱是真的能为所欲为的",
+        "startTime": 13.81,
+        "endTime": 16.31
+      },
+      {
+        "text": "但我看他领会不到这种意境",
+        "startTime": 18.06,
+        "endTime": 19.56
+      },
+      {
+        "text": "领会不到",
+        "startTime": 19.6,
+        "endTime": 21.6
+      }
+    ]
+  },
+  {
+    "name": "王境泽",
+    "template": [{
+        "text": "我王境泽就是饿死",
+        "startTime": 0,
+        "endTime": 1.04
+      },
+      {
+        "text": "死外边，从这里跳下去",
+        "startTime": 1.46,
+        "endTime": 2.9
+      },
+      {
+        "text": "也不会吃你们一点东西",
+        "startTime": 3.09,
+        "endTime": 4.33
+      },
+      {
+        "text": "真香",
+        "startTime": 4.59,
+        "endTime": 5.93
+      }
+    ]
+  }
+]

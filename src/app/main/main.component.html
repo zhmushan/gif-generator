@@ -1,0 +1,8 @@
+<div fxLayout="column">
+  <img [src]="blob" [width]="imgWidth" [height]="imgHeight" *ngIf="isComplete">
+  <mat-spinner *ngIf="!isComplete"></mat-spinner>
+  <mat-form-field *ngFor="let i of template">
+    <input matInput [(ngModel)]="i.text">
+  </mat-form-field>
+  <button mat-button (click)="build()">生成</button>
+</div>
