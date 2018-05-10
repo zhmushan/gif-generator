@@ -8,11 +8,11 @@ import { Template } from '../models/template';
 export class TemplateService {
 
   fetchTemplates() {
-    return this.http.get<Template[]>('/assets/templates.json');
+    return this.http.get<Template[]>('./assets/templates.json');
   }
 
   fetchGif(name: string) {
-    return this.http.get(`/assets/gif/${name}.gif`, {
+    return this.http.get(`./assets/gif/${name}.gif`, {
       responseType: 'arraybuffer'
     });
   }
