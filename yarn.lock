@@ -83,11 +83,27 @@
     rxjs "^6.0.0"
     source-map "^0.5.6"
 
+"@angular-devkit/core@0.6.1":
+  version "0.6.1"
+  resolved "http://registry.npm.taobao.org/@angular-devkit/core/download/@angular-devkit/core-0.6.1.tgz#2582871707a19fe3a4b83d9afdffd5422d1debc7"
+  dependencies:
+    ajv "~6.4.0"
+    chokidar "^2.0.3"
+    rxjs "^6.0.0"
+    source-map "^0.5.6"
+
 "@angular-devkit/schematics@0.6.0":
   version "0.6.0"
   resolved "http://registry.npm.taobao.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.6.0.tgz#0117dc7d5905b053df4f2918e2e073efd1091f5c"
   dependencies:
     "@angular-devkit/core" "0.6.0"
+    rxjs "^6.0.0"
+
+"@angular-devkit/schematics@0.6.1":
+  version "0.6.1"
+  resolved "http://registry.npm.taobao.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.6.1.tgz#8e94fbd45e24596f1f0a086a70dde88dbc6cf96e"
+  dependencies:
+    "@angular-devkit/core" "0.6.1"
     rxjs "^6.0.0"
 
 "@angular/animations@^6.0.0":
@@ -186,9 +202,24 @@
   dependencies:
     tslib "^1.9.0"
 
+"@angular/pwa@^0.6.1":
+  version "0.6.1"
+  resolved "http://registry.npm.taobao.org/@angular/pwa/download/@angular/pwa-0.6.1.tgz#7e9bf74ed9bb8f7b5656bad7337dcc9cb42df02a"
+  dependencies:
+    "@angular-devkit/core" "0.6.1"
+    "@angular-devkit/schematics" "0.6.1"
+    "@schematics/angular" "0.6.1"
+    typescript "~2.6.2"
+
 "@angular/router@^6.0.0":
   version "6.0.0"
   resolved "http://registry.npm.taobao.org/@angular/router/download/@angular/router-6.0.0.tgz#09a5c6f6220084c3575df81e8b36cbe9fff10d1f"
+  dependencies:
+    tslib "^1.9.0"
+
+"@angular/service-worker@^6.0.0":
+  version "6.0.1"
+  resolved "http://registry.npm.taobao.org/@angular/service-worker/download/@angular/service-worker-6.0.1.tgz#de0161a00f7f2cc2acd25d45cc5af6e8dfcdd08c"
   dependencies:
     tslib "^1.9.0"
 
@@ -206,6 +237,14 @@
   dependencies:
     "@angular-devkit/core" "0.6.0"
     "@angular-devkit/schematics" "0.6.0"
+    typescript ">=2.6.2 <2.8"
+
+"@schematics/angular@0.6.1":
+  version "0.6.1"
+  resolved "http://registry.npm.taobao.org/@schematics/angular/download/@schematics/angular-0.6.1.tgz#912495d248b95fcd20a04609e48cf2a4516b2071"
+  dependencies:
+    "@angular-devkit/core" "0.6.1"
+    "@angular-devkit/schematics" "0.6.1"
     typescript ">=2.6.2 <2.8"
 
 "@schematics/update@0.6.0":
@@ -5841,6 +5880,10 @@ typedarray@^0.0.6:
 "typescript@>=2.6.2 <2.8", typescript@~2.7.2:
   version "2.7.2"
   resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+
+typescript@~2.6.2:
+  version "2.6.2"
+  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
 uglify-es@^3.3.4:
   version "3.3.9"

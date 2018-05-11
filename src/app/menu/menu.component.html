@@ -3,4 +3,5 @@
 </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let name of _menu" (click)="onMenuClick(name)">{{ name }}</button>
+  <button mat-button (click)="onMenuClick('custom')">自定义GIF上传</button>
 </mat-menu>

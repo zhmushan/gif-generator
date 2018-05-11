@@ -3,6 +3,7 @@ import { Template, TemplateDetail } from '../models/template';
 import { TemplateService } from '../services/template.service';
 import { createCanvas, GifReader, gifParser, gifEncoder } from '../util/gif';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -22,13 +23,17 @@ export class MainComponent implements OnInit {
   @Input()
   set select(name: string) {
     if (this._select !== name) {
+      this.arraybuffer = null;
       this._select = name;
+      if (this.prevGIF) { this.prevGIF.unsubscribe(); }
       for (const i of this._templates) {
         if (i.name === this._select) {
           this.template = i.template;
+          this.getGif();
+          break;
         }
+        this.template = [];
       }
-      this.getGif();
     }
   }
 
@@ -36,11 +41,14 @@ export class MainComponent implements OnInit {
   imgWidth = 0;
   imgHeight = 0;
   isComplete = false;
+  canUse = false;
+  arraybuffer: ArrayBuffer;
+  prevGIF: Subscription;
 
   getGif() {
-    this.templateService.fetchGif(this._select).subscribe(res => {
-      console.log(res);
-      this.gifGenerator(res);
+    this.prevGIF = this.templateService.fetchGif(this._select).subscribe(res => {
+      this.arraybuffer = res;
+      this.gifGenerator(this.arraybuffer);
     });
   }
 
@@ -59,7 +67,22 @@ export class MainComponent implements OnInit {
   }
 
   build() {
-    this.getGif();
+    this.gifGenerator(this.arraybuffer);
+  }
+
+  onChange(e: Event) {
+    this.canUse = true;
+    const file = (e.target as HTMLInputElement).files[0];
+    const fileData = new Blob([file]);
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(fileData);
+    reader.onload = () => {
+      this.arraybuffer = reader.result;
+      this.gifGenerator(this.arraybuffer);
+    };
+  }
+  addTemplate() {
+    this.template = [...this.template, { text: '', startTime: 0, endTime: 0 }];
   }
 
   constructor(
