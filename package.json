@@ -24,11 +24,13 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/pwa": "^0.6.1",
     "@angular/router": "^6.0.0",
+    "@angular/service-worker": "^6.0.0",
     "core-js": "^2.5.4",
+    "gif.js": "^0.2.0",
     "material-design-icons": "^3.0.1",
+    "omggif": "^1.0.9",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26",
-    "@angular/service-worker": "^6.0.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
