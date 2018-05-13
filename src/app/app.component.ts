@@ -10,10 +10,14 @@ import { Template } from './models/template';
 export class AppComponent implements OnInit {
   title = 'app';
   templates: Template[] = [];
+  template: Template;
   selected = '';
 
   onMenuClick(name: string) {
-    this.selected = name;
+    if (this.selected !== name) {
+      this.selected = name;
+      this.template = this.templates.find(v => v.name === name);
+    }
   }
 
   constructor(
@@ -23,7 +27,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.templateService.fetchTemplates().subscribe(res => {
       this.templates = res;
-      this.selected = res[0].name;
+      this.template = res[0];
     });
   }
 }

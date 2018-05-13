@@ -1,29 +1,8 @@
-<div fxLayout="column" *ngIf="_select !== 'custom'">
+<div fxLayout="column">
   <img [src]="blob" [width]="imgWidth" [height]="imgHeight" *ngIf="isComplete">
   <mat-spinner *ngIf="!isComplete"></mat-spinner>
-  <mat-form-field *ngFor="let i of template">
-    <input matInput [(ngModel)]="i.text">
+  <mat-form-field *ngFor="let v of template?.template">
+    <input matInput [(ngModel)]="v.text">
   </mat-form-field>
   <button mat-button (click)="build()">生成</button>
-</div>
-<div fxLayout="column" *ngIf="_select === 'custom'">
-  <img [src]="blob" [width]="imgWidth" [height]="imgHeight" *ngIf="isComplete && canUse">
-  <mat-spinner *ngIf="!isComplete && canUse"></mat-spinner>
-  <button mat-button (click)="fileIpt.click()">上传GIF</button>
-  <div *ngFor="let i of template">
-    <div fxLayout="row">
-      <mat-form-field>
-        <input matInput placeholder="text" [(ngModel)]="i.text">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="startTime" type="number" [(ngModel)]="i.startTime">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="endTime" type="number" [(ngModel)]="i.endTime">
-      </mat-form-field>
-    </div>
-  </div>
-  <button mat-button (click)="addTemplate()">增加模板输入框</button>
-  <button mat-button (click)="build()">生成</button>
-  <input type="file" hidden #fileIpt (change)="onChange($event)">
 </div>

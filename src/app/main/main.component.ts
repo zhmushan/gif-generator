@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Template, TemplateDetail } from '../models/template';
 import { TemplateService } from '../services/template.service';
 import { createCanvas, GifReader, gifParser, gifEncoder } from '../util/gif';
@@ -12,82 +12,52 @@ import { Subscription } from 'rxjs';
 })
 export class MainComponent implements OnInit {
 
-  _templates: Template[] = [];
-  @Input()
-  set templates(templates: Template[]) {
-    this._templates = templates || [];
-  }
-  template: TemplateDetail[] = [];
-
-  _select = '';
-  @Input()
-  set select(name: string) {
-    if (this._select !== name) {
-      this.arraybuffer = null;
-      this._select = name;
-      if (this.prevGIF) { this.prevGIF.unsubscribe(); }
-      for (const i of this._templates) {
-        if (i.name === this._select) {
-          this.template = i.template;
-          this.getGif();
-          break;
-        }
-        this.template = [];
-      }
-    }
-  }
-
-  blob = '' as SafeUrl;
+  _template: Template;
+  isComplete = false;
   imgWidth = 0;
   imgHeight = 0;
-  isComplete = false;
-  canUse = false;
-  arraybuffer: ArrayBuffer;
-  prevGIF: Subscription;
+  blob = '' as SafeUrl;
+  gifArraybuffer: ArrayBuffer;
+  prevOp: Subscription;
 
-  getGif() {
-    this.prevGIF = this.templateService.fetchGif(this._select).subscribe(res => {
-      this.arraybuffer = res;
-      this.gifGenerator(this.arraybuffer);
-    });
+  @Input()
+  set template(template: Template) {
+    this._template = template;
+    if (template && template.name !== 'custom') {
+      if (this.prevOp) { this.prevOp.remove(this.prevOp); }
+      this.prevOp = this.templateService.fetchGif(this._template.name).subscribe(res => {
+        this.gifArraybuffer = res;
+        console.log(res)
+        this.gifGenerator();
+      });
+    }
   }
+  get template() { return this._template; }
 
-  gifGenerator(file: ArrayBuffer) {
+  gifGenerator() {
     this.isComplete = false;
-    const gifReader: GifReader = gifParser(file);
+    const gifReader: GifReader = gifParser(this.gifArraybuffer);
     const ctx = createCanvas(gifReader.width, gifReader.height);
     this.imgWidth = gifReader.width;
     this.imgHeight = gifReader.height;
-    gifEncoder(gifReader, ctx, this.template).then(blob => {
+    gifEncoder(gifReader, ctx, this.template.template).then(blob => {
       this.blob = this.sanitizer.bypassSecurityTrustUrl(blob);
       this.isComplete = true;
+      this.changeDetectorRef.detectChanges();
     }).catch(() => {
       this.isComplete = true;
+      this.changeDetectorRef.detectChanges();
     });
   }
 
   build() {
-    this.gifGenerator(this.arraybuffer);
-  }
-
-  onChange(e: Event) {
-    this.canUse = true;
-    const file = (e.target as HTMLInputElement).files[0];
-    const fileData = new Blob([file]);
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(fileData);
-    reader.onload = () => {
-      this.arraybuffer = reader.result;
-      this.gifGenerator(this.arraybuffer);
-    };
-  }
-  addTemplate() {
-    this.template = [...this.template, { text: '', startTime: 0, endTime: 0 }];
+    this.gifGenerator();
   }
 
   constructor(
     public templateService: TemplateService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
