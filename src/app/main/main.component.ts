@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Template, TemplateContent } from '../models/template';
 import { createCanvas, GifReader, gifParser, gifEncoder } from '../util/gif';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
+import { ActivatedRoute  } from '@angular/router';
 import { GifService } from '../services/gif.service';
 import templates from '../../assets/templates.json';
 
@@ -23,13 +22,6 @@ export class MainComponent implements OnInit {
   isComplete: boolean;
   templateContent: TemplateContent[];
   prevSubscription: Subscription;
-
-  constructor(
-    public sanitizer: DomSanitizer,
-    public changeDetectorRef: ChangeDetectorRef,
-    public route: ActivatedRoute,
-    public gifService: GifService
-  ) { }
 
   init(name: string) {
     this.name = name;
@@ -80,5 +72,11 @@ export class MainComponent implements OnInit {
       }
     });
   }
+
+  constructor(
+    public sanitizer: DomSanitizer,
+    public route: ActivatedRoute,
+    public gifService: GifService
+  ) { }
 
 }

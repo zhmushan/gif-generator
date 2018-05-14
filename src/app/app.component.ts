@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Template } from './models/template';
-import templates from '../assets/templates.json';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +7,10 @@ import templates from '../assets/templates.json';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  menu = [];
 
   constructor(
   ) { }
 
   ngOnInit() {
-    this.menu = (templates as Template[]).map(v => v.name);
   }
 }

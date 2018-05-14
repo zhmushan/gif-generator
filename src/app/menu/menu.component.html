@@ -9,6 +9,6 @@
   </a>
 </div>
 <mat-menu #menu="matMenu">
-  <a mat-menu-item *ngFor="let name of _menu" [routerLink]="name">{{ name }}</a>
+  <a mat-menu-item *ngFor="let name of templateNames" [routerLink]="name">{{ name }}</a>
   <a mat-button routerLink="custom">自定义GIF上传</a>
 </mat-menu>
