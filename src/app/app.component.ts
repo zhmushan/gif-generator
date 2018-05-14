@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplateService } from './services/template.service';
 import { Template } from './models/template';
+import templates from '../assets/templates.json';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +9,12 @@ import { Template } from './models/template';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  templates: Template[] = [];
-  template: Template;
-  selected = '';
-
-  onMenuClick(name: string) {
-    if (this.selected !== name) {
-      this.selected = name;
-      this.template = this.templates.find(v => v.name === name);
-    }
-  }
+  menu = [];
 
   constructor(
-    public templateService: TemplateService
   ) { }
 
   ngOnInit() {
-    this.templateService.fetchTemplates().subscribe(res => {
-      this.templates = res;
-      this.template = res[0];
-    });
+    this.menu = (templates as Template[]).map(v => v.name);
   }
 }

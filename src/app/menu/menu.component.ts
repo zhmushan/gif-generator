@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Template } from '../models/template';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,18 +11,14 @@ export class MenuComponent implements OnInit {
 
   _menu: string[] = [];
   @Input()
-  set menu(templates: Template[]) {
-    this._menu = templates.map(v => v.name);
-  }
+  set menu(menu) { this._menu = menu; }
 
-  @Output()
-  menuClick = new EventEmitter<string>();
+  init() {
 
-  onMenuClick(name: string) {
-    this.menuClick.emit(name);
   }
 
   constructor(
+    route: ActivatedRoute
   ) { }
 
   ngOnInit() {

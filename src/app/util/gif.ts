@@ -1,4 +1,5 @@
-import { TemplateDetail } from '../models/template';
+import { TemplateContent } from '../models/template';
+import { from } from 'rxjs';
 
 declare var GIF: any;
 export declare class GifReader {
@@ -36,7 +37,7 @@ export const createCanvas = (width: number, height: number) => {
 export const gifParser = (file: ArrayBuffer) =>
   new GifReader(new Uint8Array(file));
 
-export const gifEncoder = (gifReader: GifReader, context: CanvasRenderingContext2D, textInfo: TemplateDetail[]) => {
+export const gifEncoder = (gifReader: GifReader, context: CanvasRenderingContext2D, textInfo: TemplateContent[]) => {
   const [width, height] = [gifReader.width, gifReader.height];
 
   const gif = new GIF({
@@ -69,10 +70,10 @@ export const gifEncoder = (gifReader: GifReader, context: CanvasRenderingContext
     });
   }
 
-  return new Promise<string>(resolve => {
+  return from(new Promise<string>(resolve => {
     gif.on('finished', (blob: Blob) => {
       resolve(window.URL.createObjectURL(blob));
     });
     gif.render();
-  });
+  }));
 };

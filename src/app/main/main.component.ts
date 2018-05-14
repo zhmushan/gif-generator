@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { Template, TemplateDetail } from '../models/template';
-import { TemplateService } from '../services/template.service';
+import { Template, TemplateContent } from '../models/template';
 import { createCanvas, GifReader, gifParser, gifEncoder } from '../util/gif';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap, map } from 'rxjs/operators';
+import { GifService } from '../services/gif.service';
+import templates from '../../assets/templates.json';
 
 @Component({
   selector: 'app-main',
@@ -12,55 +15,70 @@ import { Subscription } from 'rxjs';
 })
 export class MainComponent implements OnInit {
 
-  _template: Template;
-  isComplete = false;
-  imgWidth = 0;
-  imgHeight = 0;
-  blob = '' as SafeUrl;
-  gifArraybuffer: ArrayBuffer;
-  prevOp: Subscription;
+  name: string;
+  arraybuffer: ArrayBuffer;
+  blob: SafeUrl;
+  imgWidth: number;
+  imgHeight: number;
+  isComplete: boolean;
+  templateContent: TemplateContent[];
+  prevSubscription: Subscription;
 
-  @Input()
-  set template(template: Template) {
-    this._template = template;
-    if (template && template.name !== 'custom') {
-      if (this.prevOp) { this.prevOp.remove(this.prevOp); }
-      this.prevOp = this.templateService.fetchGif(this._template.name).subscribe(res => {
-        this.gifArraybuffer = res;
-        console.log(res)
-        this.gifGenerator();
-      });
-    }
-  }
-  get template() { return this._template; }
+  constructor(
+    public sanitizer: DomSanitizer,
+    public changeDetectorRef: ChangeDetectorRef,
+    public route: ActivatedRoute,
+    public gifService: GifService
+  ) { }
 
-  gifGenerator() {
+  init(name: string) {
+    this.name = name;
+    this.arraybuffer = null;
+    this.blob = '';
+    this.imgWidth = 0;
+    this.imgHeight = 0;
     this.isComplete = false;
-    const gifReader: GifReader = gifParser(this.gifArraybuffer);
-    const ctx = createCanvas(gifReader.width, gifReader.height);
-    this.imgWidth = gifReader.width;
-    this.imgHeight = gifReader.height;
-    gifEncoder(gifReader, ctx, this.template.template).then(blob => {
-      this.blob = this.sanitizer.bypassSecurityTrustUrl(blob);
-      this.isComplete = true;
-      this.changeDetectorRef.detectChanges();
-    }).catch(() => {
-      this.isComplete = true;
-      this.changeDetectorRef.detectChanges();
-    });
+    const template = (templates as Template[]).find(v => v.name === this.name);
+    this.templateContent = template ? template.content : [];
+    if (this.prevSubscription) { this.prevSubscription.unsubscribe(); }
   }
 
   build() {
-    this.gifGenerator();
+    this.isComplete = false;
+    const gifReader = gifParser(this.arraybuffer);
+    const ctx = createCanvas(gifReader.width, gifReader.height);
+    [this.imgWidth, this.imgHeight] = [gifReader.width, gifReader.height];
+    this.prevSubscription = gifEncoder(gifReader, ctx, this.templateContent).subscribe(blob => {
+      this.blob = this.sanitizer.bypassSecurityTrustUrl(blob);
+      this.isComplete = true;
+    });
   }
 
-  constructor(
-    public templateService: TemplateService,
-    public sanitizer: DomSanitizer,
-    public changeDetectorRef: ChangeDetectorRef
-  ) { }
+  onChange(e: Event) {
+    const file = (e.target as HTMLInputElement).files[0];
+    const fileData = new Blob([file]);
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(fileData);
+    reader.onload = () => {
+      this.arraybuffer = reader.result;
+      this.build();
+    };
+  }
+
+  addTemplate() {
+    this.templateContent = [...this.templateContent, { text: '', startTime: 0, endTime: 0 }];
+  }
 
   ngOnInit() {
+    this.route.params.forEach(param => {
+      this.init(param.name);
+      if (this.templateContent.length > 0) {
+        this.gifService.fetch(this.name).subscribe(arraybuffer => {
+          this.arraybuffer = arraybuffer;
+          this.build();
+        });
+      }
+    });
   }
 
 }

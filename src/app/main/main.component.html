@@ -1,8 +1,24 @@
 <div fxLayout="column">
-  <img [src]="blob" [width]="imgWidth" [height]="imgHeight" *ngIf="isComplete">
-  <mat-spinner *ngIf="!isComplete"></mat-spinner>
-  <mat-form-field *ngFor="let v of template?.template">
-    <input matInput [(ngModel)]="v.text">
-  </mat-form-field>
+  <img [src]="blob" [width]="imgWidth" [height]="imgHeight" *ngIf="isComplete && arraybuffer">
+  <mat-spinner *ngIf="!isComplete && arraybuffer"></mat-spinner>
+  <div *ngIf="name === 'custom'">
+    <button mat-button (click)="fileIpt.click()">上传GIF</button>
+    <button mat-button (click)="addTemplate()">增加模板输入框</button>
+  </div>
+  <div *ngFor="let i of templateContent">
+    <div fxLayout="row">
+      <mat-form-field>
+        <input matInput placeholder="text" [(ngModel)]="i.text">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="startTime" type="number" [(ngModel)]="i.startTime">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="endTime" type="number" [(ngModel)]="i.endTime">
+      </mat-form-field>
+    </div>
+  </div>
   <button mat-button (click)="build()">生成</button>
 </div>
+
+<input type="file" hidden #fileIpt (change)="onChange($event)">

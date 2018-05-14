@@ -1,6 +1,8 @@
-[{
+[
+  {
     "name": "窃格瓦拉",
-    "template": [{
+    "content": [
+      {
         "text": "没有钱啊，肯定要做的啊",
         "startTime": 0,
         "endTime": 1.8
@@ -31,11 +33,11 @@
         "endTime": 10.75
       }
     ]
-
   },
   {
     "name": "为所欲为",
-    "template": [{
+    "content": [
+      {
         "text": "好啊",
         "startTime": 1.18,
         "endTime": 1.56
@@ -84,7 +86,8 @@
   },
   {
     "name": "王境泽",
-    "template": [{
+    "content": [
+      {
         "text": "我王境泽就是饿死",
         "startTime": 0,
         "endTime": 1.04

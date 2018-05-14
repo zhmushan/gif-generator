@@ -5,13 +5,9 @@ import { Template } from '../models/template';
 @Injectable({
   providedIn: 'root'
 })
-export class TemplateService {
+export class GifService {
 
-  fetchTemplates() {
-    return this.http.get<Template[]>('./assets/templates.json');
-  }
-
-  fetchGif(name: string) {
+  fetch(name: string) {
     return this.http.get(`./assets/gif/${name}.gif`, {
       responseType: 'arraybuffer'
     });
