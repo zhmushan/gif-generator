@@ -5,7 +5,7 @@
 ```json
 {
   "name": "name",
-  "template": [
+  "content": [
     {
       "text": "text",
       "startTime": 0,
